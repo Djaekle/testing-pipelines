@@ -1,0 +1,221 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ClassifyFiles" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_isFromCanada" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_pdfFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMainFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_currentDomain" Type="InArgument(x:String)" />
+    <x:Property Name="inout_dtPDFProcessingLog" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="out_drCurrentProcessingLogRecord" Type="OutArgument(s:String[])" />
+    <x:Property Name="in_strBaseFolderPathExternallyAccessed" Type="InArgument(x:String)" />
+    <x:Property Name="in_strBaseFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_TAG" Type="InArgument(x:String)" />
+    <x:Property Name="in_strCurrentMainEmailFileName" Type="InArgument(x:String)" />
+    <x:Property Name="in_referenceNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_isUnprocessed" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_treatyNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_invoiceNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_brokerSectionID" Type="InArgument(x:String)" />
+    <x:Property Name="in_triadSectionID" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1169,1047</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ClassifyFiles_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="WF to move files to their new locations and add prefixes to the name of the files based on classification values. When folders don't exist the activities create the folders " DisplayName="ClassifyFiles" sap:VirtualizedContainerService.HintSize="376,982" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strMainEmailNewName" />
+      <Variable x:TypeArguments="x:String" Name="strNewSubFolder" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SupportActivities\GenerateNewName.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isCanada">
+          <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="in_isFromCanada" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strNewName">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMainEmailNewName" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceName">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Concat(&quot;Inv_&quot;,in_invoiceNumber)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_emailName">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.GetFileNameWithoutExtension(in_strCurrentMainEmailFileName)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TreatyNum">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_treatyNumber" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isUnprocessed">
+          <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="in_isUnprocessed" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_unprocessedFolder">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="if (in_isUnprocessed,if (in_isFromCanada, in_strMainFolderPath + in_currentDomain+&quot; u c\&quot;, in_strMainFolderPath + in_currentDomain+&quot; u\&quot;),if (in_isFromCanada, in_strMainFolderPath + in_currentDomain+&quot; p c\&quot;, in_strMainFolderPath + in_currentDomain+&quot; p\&quot;))" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_latestSubFolder">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strNewSubFolder" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Rename PDF file to BotTag value" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">[in_pdfFilePath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Path">[Path.GetDirectoryName(in_pdfFilePath)+"\"+in_TAG+"_"+Path.GetFileNameWithoutExtension(in_pdfFilePath)+".PDF"]</InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">True</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">[in_TAG]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_currentDomain]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">[in_treatyNumber]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber">[in_invoiceNumber]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber">[in_referenceNumber]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">[in_TAG+"_"+Path.GetFileNameWithoutExtension(in_pdfFilePath)]</InArgument>
+        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">[out_drCurrentProcessingLogRecord]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[in_strBaseFolderPathExternallyAccessed]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[in_strBaseFolderPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID">[in_brokerSectionID]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID">[in_triadSectionID]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Move PDF file to the unprocessed folder" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Path" />
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">False</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">[in_TAG]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_currentDomain]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">[Path.GetDirectoryName(in_pdfFilePath)+"\"+in_TAG+"_"+Path.GetFileNameWithoutExtension(in_pdfFilePath)+".PDF"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">[strNewSubFolder]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">[strMainEmailNewName]</InArgument>
+        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID" />
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Move MSG file to the unprocessed folder" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Path" />
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">False</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">[in_TAG]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_currentDomain]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">[in_strCurrentMainEmailFileName+".MSG"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">[strNewSubFolder]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">[strMainEmailNewName]</InArgument>
+        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID" />
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:CreateFile ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create File - To be used for the TRIAD bot" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_1" Name="COMPLETED.TXT" Path="[strNewSubFolder]" />
+  </Sequence>
+</Activity>
