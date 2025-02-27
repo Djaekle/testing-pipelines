@@ -21,13 +21,10 @@
   <this:SaveEmailAttachments.in_dtEmailIDs>
     <InArgument x:TypeArguments="sd:DataTable" />
   </this:SaveEmailAttachments.in_dtEmailIDs>
-  <this:SaveEmailAttachments.in_CaptureScreenshots>
-    <InArgument x:TypeArguments="x:Boolean" />
-  </this:SaveEmailAttachments.in_CaptureScreenshots>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1190,4032</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1184,4267</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SaveEmailAttachments_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="96">
@@ -85,10 +82,12 @@
       <x:String>UiPath.Mail.Outlook.Activities</x:String>
       <x:String>UiPath.Web</x:String>
       <x:String>UiPath.Web.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="120">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -153,9 +152,10 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>UiPath.Web</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="WF to download emails and their attachments from an Outlook 365 folder (inbox). Once an email is processed is marked as READ so it won't be processed again. Also it uses a table with records of previously processed emails so it double checks if the emails has been alredy processed." DisplayName="SaveEmailAttachments" sap:VirtualizedContainerService.HintSize="828,3967" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="WF to download emails and their attachments from an Outlook 365 folder (inbox). Once an email is processed is marked as READ so it won't be processed again. Also it uses a table with records of previously processed emails so it double checks if the emails has been alredy processed." DisplayName="SaveEmailAttachments" sap:VirtualizedContainerService.HintSize="848,4202" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="foundEmailsToProcess" />
       <Variable x:TypeArguments="x:String" Name="todaysDate" />
@@ -166,7 +166,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="786,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="786,61" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Boolean">[out_HasErrors]</OutArgument>
       </Assign.To>
@@ -174,8 +174,16 @@
         <InArgument x:TypeArguments="x:Boolean">False</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="786,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Save Email Attachments has started&quot;]" />
-    <If Condition="[in_CaptureScreenshots]" DisplayName="If - Capture Screenshot - Begin Save emails" sap:VirtualizedContainerService.HintSize="786,537" sap2010:WorkflowViewState.IdRef="If_5">
+    <Assign sap:VirtualizedContainerService.HintSize="786,61" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">[in_CaptureScreenshots]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="786,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Save Email Attachments has started&quot;]" />
+    <If Condition="[in_CaptureScreenshots]" DisplayName="If - Capture Screenshot - Begin Save emails" sap:VirtualizedContainerService.HintSize="786,650" sap2010:WorkflowViewState.IdRef="If_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -183,7 +191,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,350" sap2010:WorkflowViewState.IdRef="Sequence_20">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,371" sap2010:WorkflowViewState.IdRef="Sequence_20">
           <Sequence.Variables>
             <Variable x:TypeArguments="ui:Image" Name="screenshot" />
           </Sequence.Variables>
@@ -192,7 +200,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot" sap:VirtualizedContainerService.HintSize="334,86" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[screenshot]">
+          <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot" sap:VirtualizedContainerService.HintSize="338,87" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[screenshot]">
             <ui:TakeScreenshot.Target>
               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="2ca140f3-7b35-47c0-97b7-33beb7634f8e">
                 <ui:Target.TimeoutMS>
@@ -204,11 +212,11 @@
               </ui:Target>
             </ui:TakeScreenshot.Target>
           </ui:TakeScreenshot>
-          <ui:SaveImage DisplayName="Save Image" FileName="[Path.Combine({in_screenshotspath, String.Format(&quot;BrokerAccount_SaveAttach-{0}.png&quot;, DateTime.Now.ToString(&quot;yyyyMMdd-HHmmss&quot;))})]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[screenshot]" />
+          <ui:SaveImage DisplayName="Save Image" FileName="[Path.Combine({in_screenshotspath, String.Format(&quot;BrokerAccount_SaveAttach-{0}.png&quot;, DateTime.Now.ToString(&quot;yyyyMMdd-HHmmss&quot;))})]" sap:VirtualizedContainerService.HintSize="338,133" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[screenshot]" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_21">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,103" sap2010:WorkflowViewState.IdRef="Sequence_21">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -296,36 +304,16 @@
                                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="516,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Finding domain &quot;+CurrentDomain + &quot; in current email &quot;]" />
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FindMatchingEmailAddresses workflow" sap:VirtualizedContainerService.HintSize="516,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="SupportActivities\FindMatchingEmailAddresses.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_CurrentDomain">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentDomain.toLower.Trim()" />
-                                    </InArgument>
-                                    <OutArgument x:TypeArguments="x:String" x:Key="out_AttachmentsPath">
-                                      <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strAttachmentsPath" />
-                                    </OutArgument>
-                                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_CurrentMail">
-                                      <VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="currentEmail" />
-                                    </InArgument>
-                                    <OutArgument x:TypeArguments="x:String" x:Key="out_EmailSubjectLine">
-                                      <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strEmailSubjectLine" />
-                                    </OutArgument>
-                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtEmailIDs">
-                                      <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="in_dtEmailIDs" />
-                                    </InOutArgument>
-                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">
-                                      <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="out_HasErrors" />
-                                    </OutArgument>
-                                    <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">
-                                      <VisualBasicValue x:TypeArguments="ui:DatabaseConnection" ExpressionText="in_DBConnection" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtProcessedEmailIDs">
-                                      <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_dtEmailIDs.Clone()" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderPath">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strMainFolderPath" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_strRegExToValidateEmailAddresses">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strRegExToValidateEmailAddresses" />
-                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CurrentDomain">[CurrentDomain.toLower.Trim()]</InArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_AttachmentsPath">[strAttachmentsPath]</OutArgument>
+                                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_CurrentMail">[currentEmail]</InArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_EmailSubjectLine">[strEmailSubjectLine]</OutArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtEmailIDs">[in_dtEmailIDs]</InOutArgument>
+                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">[out_HasErrors]</OutArgument>
+                                    <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DBConnection]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtProcessedEmailIDs">[in_dtEmailIDs.Clone()]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderPath">[in_strMainFolderPath]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_strRegExToValidateEmailAddresses">[in_strRegExToValidateEmailAddresses]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                                 <If sap2010:Annotation.AnnotationText="If AttachmentsPath and EmailSubjectLine is not nothing then save attachments and email " Condition="[strAttachmentsPath isnot Nothing AND strEmailSubjectLine isnot Nothing]" sap:VirtualizedContainerService.HintSize="516,1131" sap2010:WorkflowViewState.IdRef="If_6">

@@ -16,11 +16,12 @@
     <x:Property Name="in_invoiceNumber" Type="InArgument(x:String)" />
     <x:Property Name="in_brokerSectionID" Type="InArgument(x:String)" />
     <x:Property Name="in_triadSectionID" Type="InArgument(x:String)" />
+    <x:Property Name="out_boolProcessedDuplicate" Type="OutArgument(x:Boolean)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1169,1047</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1184,2266</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ClassifyFiles_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,10 +52,13 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="46">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -99,9 +103,10 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
-    </sco:Collection>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="WF to move files to their new locations and add prefixes to the name of the files based on classification values. When folders don't exist the activities create the folders " DisplayName="ClassifyFiles" sap:VirtualizedContainerService.HintSize="376,982" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="WF to move files to their new locations and add prefixes to the name of the files based on classification values. When folders don't exist the activities create the folders " DisplayName="ClassifyFiles" sap:VirtualizedContainerService.HintSize="602,2201" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strMainEmailNewName" />
       <Variable x:TypeArguments="x:String" Name="strNewSubFolder" />
@@ -112,110 +117,233 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SupportActivities\GenerateNewName.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isCanada">
-          <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="in_isFromCanada" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strNewName">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMainEmailNewName" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceName">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Concat(&quot;Inv_&quot;,in_invoiceNumber)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_emailName">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.GetFileNameWithoutExtension(in_strCurrentMainEmailFileName)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TreatyNum">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_treatyNumber" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isUnprocessed">
-          <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="in_isUnprocessed" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_unprocessedFolder">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="if (in_isUnprocessed,if (in_isFromCanada, in_strMainFolderPath + in_currentDomain+&quot; u c\&quot;, in_strMainFolderPath + in_currentDomain+&quot; u\&quot;),if (in_isFromCanada, in_strMainFolderPath + in_currentDomain+&quot; p c\&quot;, in_strMainFolderPath + in_currentDomain+&quot; p\&quot;))" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_latestSubFolder">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strNewSubFolder" />
-        </OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Rename PDF file to BotTag value" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">[in_pdfFilePath]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Path">[Path.GetDirectoryName(in_pdfFilePath)+"\"+in_TAG+"_"+Path.GetFileNameWithoutExtension(in_pdfFilePath)+".PDF"]</InArgument>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">True</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">[in_TAG]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_currentDomain]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">[in_treatyNumber]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber">[in_invoiceNumber]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber">[in_referenceNumber]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">[in_TAG+"_"+Path.GetFileNameWithoutExtension(in_pdfFilePath)]</InArgument>
-        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">[out_drCurrentProcessingLogRecord]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[in_strBaseFolderPathExternallyAccessed]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[in_strBaseFolderPath]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID">[in_brokerSectionID]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID">[in_triadSectionID]</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
+    <Assign sap:VirtualizedContainerService.HintSize="540,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">[out_boolProcessedDuplicate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence sap:VirtualizedContainerService.HintSize="540,1163" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Move PDF file to the unprocessed folder" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_Path" />
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">False</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">[in_TAG]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_currentDomain]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">[Path.GetDirectoryName(in_pdfFilePath)+"\"+in_TAG+"_"+Path.GetFileNameWithoutExtension(in_pdfFilePath)+".PDF"]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">[strNewSubFolder]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">[strMainEmailNewName]</InArgument>
-        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID" />
-      </ui:InvokeWorkflowFile.Arguments>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Move MSG file to the unprocessed folder" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_Path" />
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">False</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">[in_TAG]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_currentDomain]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">[in_strCurrentMainEmailFileName+".MSG"]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">[strNewSubFolder]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">[strMainEmailNewName]</InArgument>
-        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID" />
-      </ui:InvokeWorkflowFile.Arguments>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:InvokeWorkflowFile>
-    <ui:CreateFile ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create File - To be used for the TRIAD bot" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_1" Name="COMPLETED.TXT" Path="[strNewSubFolder]" />
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="SupportActivities\GenerateNewName.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:Boolean" x:Key="in_isCanada">
+            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="in_isFromCanada" />
+          </InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_strNewName">
+            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMainEmailNewName" />
+          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_invoiceName">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Concat(&quot;Inv_&quot;,in_invoiceNumber)" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_emailName">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.GetFileNameWithoutExtension(in_strCurrentMainEmailFileName)" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_TreatyNum">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_treatyNumber" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:Boolean" x:Key="in_isUnprocessed">
+            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="in_isUnprocessed" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_unprocessedFolder">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="if (in_isUnprocessed,if (in_isFromCanada, in_strMainFolderPath + in_currentDomain+&quot; u c\&quot;, in_strMainFolderPath + in_currentDomain+&quot; u\&quot;),if (in_isFromCanada, in_strMainFolderPath + in_currentDomain+&quot; p c\&quot;, in_strMainFolderPath + in_currentDomain+&quot; p\&quot;))" />
+          </InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_latestSubFolder">
+            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strNewSubFolder" />
+          </OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Rename PDF file to BotTag value" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_pdfFilePath" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Path">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.GetDirectoryName(in_pdfFilePath)+&quot;\&quot;+in_TAG+&quot;_&quot;+Path.GetFileNameWithoutExtension(in_pdfFilePath)+&quot;.PDF&quot;" />
+          </InArgument>
+          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">
+            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="inout_dtPDFProcessingLog" />
+          </InOutArgument>
+          <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">
+            <Literal x:TypeArguments="x:Boolean" Value="True" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_TAG">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TAG" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_currentDomain" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_treatyNumber" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_invoiceNumber" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_referenceNumber" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_copyTo" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TAG+&quot;_&quot;+Path.GetFileNameWithoutExtension(in_pdfFilePath)" />
+          </InArgument>
+          <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">
+            <VisualBasicReference x:TypeArguments="s:String[]" ExpressionText="out_drCurrentProcessingLogRecord" />
+          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strBaseFolderPathExternallyAccessed" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strBaseFolderPath" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_SectionID">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_brokerSectionID" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_triadSectionID" />
+          </InArgument>
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate" />
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Move PDF file to the unprocessed folder" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_currentFile" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_Path" />
+          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">
+            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="inout_dtPDFProcessingLog" />
+          </InOutArgument>
+          <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">
+            <Literal x:TypeArguments="x:Boolean" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_TAG">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TAG" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_currentDomain" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.GetDirectoryName(in_pdfFilePath)+&quot;\&quot;+in_TAG+&quot;_&quot;+Path.GetFileNameWithoutExtension(in_pdfFilePath)+&quot;.PDF&quot;" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strNewSubFolder" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strMainEmailNewName" />
+          </InArgument>
+          <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_SectionID" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID" />
+          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate">
+            <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="out_boolProcessedDuplicate" />
+          </OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
+      <If Condition="[not out_boolProcessedDuplicate]" sap:VirtualizedContainerService.HintSize="478,531" sap2010:WorkflowViewState.IdRef="If_5">
+        <If.Then>
+          <Sequence sap:VirtualizedContainerService.HintSize="400,255" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Move MSG file to the unprocessed folder" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_currentFile" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_Path" />
+                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">
+                  <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="inout_dtPDFProcessingLog" />
+                </InOutArgument>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">
+                  <Literal x:TypeArguments="x:Boolean" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_TAG">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TAG" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_currentDomain" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strCurrentMainEmailFileName+&quot;.MSG&quot;" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strNewSubFolder" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strMainEmailNewName" />
+                </InArgument>
+                <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_SectionID" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID" />
+                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate">
+                  <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="out_boolProcessedDuplicate" />
+                </OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </If.Then>
+      </If>
+    </Sequence>
+    <ui:CreateFile ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create File - To be used for the TRIAD bot" sap:VirtualizedContainerService.HintSize="540,133" sap2010:WorkflowViewState.IdRef="CreateFile_1" Name="COMPLETED.TXT" Path="[strNewSubFolder]" />
+    <If Condition="[in_TAG = &quot;DUPLICATE&quot;]" sap:VirtualizedContainerService.HintSize="540,571" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="400,295" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,92" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Warn" Message="[&quot;Duplicate file copied to -&gt; &quot; + strNewSubFolder.ToString]" />
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,244" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:CreateFile ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create File - To be used for the TRIAD bot" sap:VirtualizedContainerService.HintSize="338,133" sap2010:WorkflowViewState.IdRef="CreateFile_2" Name="DUPLICATE.TXT" Path="[strNewSubFolder]" />
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:CommentOut>
+        </Sequence>
+      </If.Then>
+    </If>
   </Sequence>
 </Activity>

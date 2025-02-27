@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1169,2178</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1184,2179</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>BrokerAccountWorkflow_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="54">
@@ -40,10 +40,12 @@
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Database</x:String>
       <x:String>System.Security</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="92">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -92,9 +94,10 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>UiPath.Database</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart sap2010:Annotation.AnnotationText="WF to control the steps of th process. Processed can be skip steps based on the configuration coming from Orchestrator" DisplayName="BrokerAccountWorkflow" sap:VirtualizedContainerService.HintSize="684,2113" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart sap2010:Annotation.AnnotationText="WF to control the steps of th process. Processed can be skip steps based on the configuration coming from Orchestrator" DisplayName="BrokerAccountWorkflow" sap:VirtualizedContainerService.HintSize="729,2114" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="strMonitoringInboxAddress" />
       <Variable x:TypeArguments="x:String" Name="strOutlookFolder" />
@@ -130,8 +133,8 @@
         <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
         <av:Size x:Key="ShapeSize">60,75</av:Size>
         <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,121</av:PointCollection>
-        <x:Double x:Key="Height">2045.5</x:Double>
-        <x:Double x:Key="Width">650</x:Double>
+        <x:Double x:Key="Height">2046.5</x:Double>
+        <x:Double x:Key="Width">695</x:Double>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
@@ -144,7 +147,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <av:Point x:Key="ShapeLocation">252.5,406.5</av:Point>
           <av:Size x:Key="ShapeSize">95,87</av:Size>
-          <av:PointCollection x:Key="TrueConnector">252.5,450 240,450 240,516.5 300,516.5 300,546.5</av:PointCollection>
+          <av:PointCollection x:Key="TrueConnector">252.5,450 208.5,450 208.5,516.5 300,516.5 300,546.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <FlowDecision.True>
@@ -155,7 +158,7 @@
               <av:Point x:Key="ShapeLocation">256.5,546.5</av:Point>
               <av:Size x:Key="ShapeSize">87,87</av:Size>
               <av:PointCollection x:Key="TrueConnector">256.5,590 160,590 160,730 190,730</av:PointCollection>
-              <av:PointCollection x:Key="FalseConnector">343.5,590 403.5,590 403.5,1246.5 311.75,1246.5 311.75,1276.5</av:PointCollection>
+              <av:PointCollection x:Key="FalseConnector">343.5,590 507.5,590 507.5,622.04 404.5,622.04 404.5,1246.5 311.75,1246.5 311.75,1276.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <FlowDecision.True>
@@ -163,11 +166,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">190,683.5</av:Point>
-                  <av:Size x:Key="ShapeSize">200,93</av:Size>
+                  <av:Size x:Key="ShapeSize">200,94</av:Size>
                   <av:PointCollection x:Key="ConnectorLocation">290,776.5 290,826.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Load the EmailID of all previously processed emails" DisplayName="Invoke Load Processed Emails" sap:VirtualizedContainerService.HintSize="200,93" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SupportActivities\LoadProcessedEmails.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Load the EmailID of all previously processed emails" DisplayName="Invoke Load Processed Emails" sap:VirtualizedContainerService.HintSize="200,94" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SupportActivities\LoadProcessedEmails.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">[out_HasErrors]</OutArgument>
                   <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtEmailIDs">[dtEmailIDs]</OutArgument>
@@ -196,11 +199,11 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">190,968.5</av:Point>
-                          <av:Size x:Key="ShapeSize">200,123</av:Size>
+                          <av:Size x:Key="ShapeSize">200,124</av:Size>
                           <av:PointCollection x:Key="ConnectorLocation">290,1091.5 290,1146.5</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Save Email Attachments and Keep Track of which ones we have saved down to avoid saving duplicates" DisplayName="Invoke Save Email Attachments" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\SaveEmailAttachmentsExchange.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Save Email Attachments and Keep Track of which ones we have saved down to avoid saving duplicates" DisplayName="Invoke Save Email Attachments" sap:VirtualizedContainerService.HintSize="200,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\SaveEmailAttachmentsExchange.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">[out_HasErrors]</OutArgument>
                           <InArgument x:TypeArguments="s:String[]" x:Key="in_DTDomains">[strDomains.Split(","c)]</InArgument>
@@ -254,63 +257,29 @@
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:Point x:Key="ShapeLocation">190,1428.5</av:Point>
-                                      <av:Size x:Key="ShapeSize">200,123</av:Size>
+                                      <av:Size x:Key="ShapeSize">200,124</av:Size>
                                       <av:PointCollection x:Key="ConnectorLocation">290,1551.5 290,1606.5</av:PointCollection>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Open attachments and create the upload template and change file names if included in the template" DisplayName="Invoke Extract Data From Attachments" sap:VirtualizedContainerService.HintSize="353,154" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\ExtractDataFromAttachments.xaml">
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Open attachments and create the upload template and change file names if included in the template" DisplayName="Invoke Extract Data From Attachments" sap:VirtualizedContainerService.HintSize="200,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\ExtractDataFromAttachments.xaml">
                                     <ui:InvokeWorkflowFile.Arguments>
-                                      <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">
-                                        <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="out_HasErrors" />
-                                      </OutArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strReferenceNumberLookupTableFilePath">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath + strReferenceNumberLookupTableFilePath" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderPath">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath + strMainFolderName" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="s:String[]" x:Key="in_strArDomains">
-                                        <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="strDomains.Split(&quot;,&quot;c)" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_filterDomain">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_filterDomain" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_PDFExecutable">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="PDFReaderExecutable" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strTRIADUploadFileTemplate">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath + strTRIADUploadFileTemplate" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strTRIADUploadFolderPath">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath + strMainFolderName + &quot;{domain}\&quot; + strTRIADUploadFolderPath" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderName">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strMainFolderName.Substring(0, strMainFolderName.Length -1)" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strProcessingLogFileTemplate">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath + strProcessingLogFileTemplate" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strProcessingLogFolderPath">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPath + strMainFolderName + &quot;{domain}\&quot; + strTRIADUploadFolderPath" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBaseFolderPathExternallyAccessed" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">
-                                        <VisualBasicValue x:TypeArguments="ui:DatabaseConnection" ExpressionText="DBConnection" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strTRIADOutputFileName">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strTRIADOutputFileName" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strProcessingLogFileName">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strProcessingLogFileName" />
-                                      </InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_strRegExToValidateFolderStructure">
-                                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRegExToValidateFolderStructure" />
-                                      </InArgument>
+                                      <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">[out_HasErrors]</OutArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strReferenceNumberLookupTableFilePath">[strBaseFolderPath + strReferenceNumberLookupTableFilePath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderPath">[strBaseFolderPath + strMainFolderName]</InArgument>
+                                      <InArgument x:TypeArguments="s:String[]" x:Key="in_strArDomains">[strDomains.Split(","c)]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_filterDomain">[in_filterDomain]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_PDFExecutable">[PDFReaderExecutable]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[strBaseFolderPath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strTRIADUploadFileTemplate">[strBaseFolderPath + strTRIADUploadFileTemplate]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strTRIADUploadFolderPath">[strBaseFolderPath + strMainFolderName + "{domain}\" + strTRIADUploadFolderPath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderName">[strMainFolderName.Substring(0, strMainFolderName.Length -1)]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strProcessingLogFileTemplate">[strBaseFolderPath + strProcessingLogFileTemplate]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strProcessingLogFolderPath">[strBaseFolderPath + strMainFolderName + "{domain}\" + strTRIADUploadFolderPath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[strBaseFolderPathExternallyAccessed]</InArgument>
+                                      <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[DBConnection]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strTRIADOutputFileName">[strTRIADOutputFileName]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strProcessingLogFileName">[strProcessingLogFileName]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_strRegExToValidateFolderStructure">[strRegExToValidateFolderStructure]</InArgument>
                                     </ui:InvokeWorkflowFile.Arguments>
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -346,11 +315,11 @@
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <av:Point x:Key="ShapeLocation">190,1919</av:Point>
-                                                  <av:Size x:Key="ShapeSize">200,22</av:Size>
-                                                  <av:PointCollection x:Key="ConnectorLocation">290,1941 290,1994.5</av:PointCollection>
+                                                  <av:Size x:Key="ShapeSize">200,25</av:Size>
+                                                  <av:PointCollection x:Key="ConnectorLocation">290,1944 290,1994.5</av:PointCollection>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <ui:DatabaseDisconnect DatabaseConnection="[DBConnection]" DisplayName="Disconnect from database" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1">
+                                              <ui:DatabaseDisconnect DatabaseConnection="[DBConnection]" DisplayName="Disconnect from database" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -362,10 +331,10 @@
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <av:Point x:Key="ShapeLocation">190,1994.5</av:Point>
-                                                      <av:Size x:Key="ShapeSize">200,51</av:Size>
+                                                      <av:Size x:Key="ShapeSize">200,52</av:Size>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;The Bot has finished processing all files&quot;]">
+                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;The Bot has finished processing all files&quot;]">
                                                     <sap:WorkflowViewStateService.ViewState>
                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -386,10 +355,10 @@
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <av:Point x:Key="ShapeLocation">410,1664.5</av:Point>
-                                              <av:Size x:Key="ShapeSize">200,51</av:Size>
+                                              <av:Size x:Key="ShapeSize">200,52</av:Size>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Error returned after processing PDF attachments&quot;]">
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Error returned after processing PDF attachments&quot;]">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -412,10 +381,10 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">450,1344.5</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,51</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,52</av:Size>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Error returned after saving emails and attachments&quot;]">
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Error returned after saving emails and attachments&quot;]">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -433,10 +402,10 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">450,844.5</av:Point>
-                          <av:Size x:Key="ShapeSize">200,51</av:Size>
+                          <av:Size x:Key="ShapeSize">200,52</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[&quot;Error returned after loading processed emails&quot;]">
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[&quot;Error returned after loading processed emails&quot;]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -472,11 +441,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">200,121</av:Point>
-          <av:Size x:Key="ShapeSize">200,138</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,259 300,304.5</av:PointCollection>
+          <av:Size x:Key="ShapeSize">200,153</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,274 300,304.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence sap2010:Annotation.AnnotationText="Call Orchestrator and retrieve all configuration variables that will be used in the process." DisplayName="Invoke Load Configuration" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence sap2010:Annotation.AnnotationText="Call Orchestrator and retrieve all configuration variables that will be used in the process." DisplayName="Invoke Load Configuration" sap:VirtualizedContainerService.HintSize="200,153" sap2010:WorkflowViewState.IdRef="Sequence_3">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="strRegExForFolderPath" />
         </Sequence.Variables>
@@ -488,84 +457,32 @@
         </sap:WorkflowViewStateService.ViewState>
         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Call Orchestrator and retrieve all configuration variables that will be used in the process." DisplayName="Invoke Load Configuration" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Workflows\LoadConfiguration.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">
-              <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="out_HasErrors" />
-            </OutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strDomains">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strDomains" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strOutlookFolder">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strOutlookFolder" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strReferenceNumberLookupTableFilePath">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strReferenceNumberLookupTableFilePath" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strMonitoringInboxAddress">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMonitoringInboxAddress" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strBaseFolderPath">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strBaseFolderPath" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strTRIADUploadFileTemplate">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strTRIADUploadFileTemplate" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strTRIADUploadFolderPath">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strTRIADUploadFolderPath" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strProcessingLogFileTemplate">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strProcessingLogFileTemplate" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="s:String[]" x:Key="inout_strStepsToExecute">
-              <VisualBasicReference x:TypeArguments="s:String[]" ExpressionText="in_StepsToExecute" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strBaseFolderPathExternallyAccessed">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strBaseFolderPathExternallyAccessed" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strDBServer">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="SourceDBServer" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strDBName">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="SourceDBName" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strTRIADOutputFileName">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strTRIADOutputFileName" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strProcessingLogFileName">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strProcessingLogFileName" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strRegExToValidateFolderStructure">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strRegExToValidateFolderStructure" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strMainFolderName">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMainFolderName" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strAppCliID">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strAppCliID" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strExchangeTenant">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExchangeTenant" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strAPICredentialsUsername">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strAPICredentialsUsername" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="ss:SecureString" x:Key="inout_strAPICredentialsPassword">
-              <VisualBasicReference x:TypeArguments="ss:SecureString" ExpressionText="strAPICredentialsPassword" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strApiSecretID">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strApiSecretID" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="ss:SecureString" x:Key="inout_strApiSecret">
-              <VisualBasicReference x:TypeArguments="ss:SecureString" ExpressionText="strApiSecret" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:Int32" x:Key="inout_intGetMailFromLastXDays">
-              <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intGetMailFromLastXDays" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strRegExToValidateEmailAddresses">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strRegExToValidateEmailAddresses" />
-            </InOutArgument>
-            <InOutArgument x:TypeArguments="x:String" x:Key="inout_AcrobatReaderExecutable">
-              <VisualBasicReference x:TypeArguments="x:String" ExpressionText="PDFReaderExecutable" />
-            </InOutArgument>
+            <OutArgument x:TypeArguments="x:Boolean" x:Key="out_HasErrors">[out_HasErrors]</OutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strDomains">[strDomains]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strOutlookFolder">[strOutlookFolder]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strReferenceNumberLookupTableFilePath">[strReferenceNumberLookupTableFilePath]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strMonitoringInboxAddress">[strMonitoringInboxAddress]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strBaseFolderPath">[strBaseFolderPath]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strTRIADUploadFileTemplate">[strTRIADUploadFileTemplate]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strTRIADUploadFolderPath">[strTRIADUploadFolderPath]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strProcessingLogFileTemplate">[strProcessingLogFileTemplate]</InOutArgument>
+            <InOutArgument x:TypeArguments="s:String[]" x:Key="inout_strStepsToExecute">[in_StepsToExecute]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strBaseFolderPathExternallyAccessed">[strBaseFolderPathExternallyAccessed]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strDBServer">[SourceDBServer]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strDBName">[SourceDBName]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strTRIADOutputFileName">[strTRIADOutputFileName]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strProcessingLogFileName">[strProcessingLogFileName]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strRegExToValidateFolderStructure">[strRegExToValidateFolderStructure]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strMainFolderName">[strMainFolderName]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strAppCliID">[strAppCliID]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strExchangeTenant">[strExchangeTenant]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strAPICredentialsUsername">[strAPICredentialsUsername]</InOutArgument>
+            <InOutArgument x:TypeArguments="ss:SecureString" x:Key="inout_strAPICredentialsPassword">[strAPICredentialsPassword]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strApiSecretID">[strApiSecretID]</InOutArgument>
+            <InOutArgument x:TypeArguments="ss:SecureString" x:Key="inout_strApiSecret">[strApiSecret]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:Int32" x:Key="inout_intGetMailFromLastXDays">[intGetMailFromLastXDays]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_strRegExToValidateEmailAddresses">[strRegExToValidateEmailAddresses]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="inout_AcrobatReaderExecutable">[PDFReaderExecutable]</InOutArgument>
           </ui:InvokeWorkflowFile.Arguments>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -580,11 +497,11 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">200,304.5</av:Point>
-              <av:Size x:Key="ShapeSize">200,51</av:Size>
+              <av:Size x:Key="ShapeSize">200,52</av:Size>
               <av:PointCollection x:Key="ConnectorLocation">300,355.5 300,406.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:DatabaseConnect DisplayName="Connect to database" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[&quot;Data Source=&quot;+SourceDBServer+&quot;;Initial Catalog=&quot;+SourceDBName+&quot;;Integrated Security=True;Encrypt=False&quot;]" DatabaseConnection="[DBConnection]">
+          <ui:DatabaseConnect DisplayName="Connect to database" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[&quot;Data Source=&quot;+SourceDBServer+&quot;;Initial Catalog=&quot;+SourceDBName+&quot;;Integrated Security=True;Encrypt=False&quot;]" DatabaseConnection="[DBConnection]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
