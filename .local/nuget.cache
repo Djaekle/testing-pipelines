@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jXFGeaSZDxefFEILiSqVbxJ4LWAz+1hvuvuhAj1hm9kX/V15IF0x/gp8+oN+IlOzrrEWMXOKqcK1UfvXuhsqaA==",
+  "dgSpecHash": "GZTV4jAm/ZWox1c06HkZBOmEvHu7Cuc8DPvEAD5YWPxU11Gx2YvtRbaD4k7QPSjOIEdhDFvALw0mnK7+YLPBcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\djaekle\\OneDrive - WRB\\Desktop\\New folder (4)\\.local\\",
+  "projectFilePath": "C:\\Users\\djaekle\\OneDrive - WRB\\Desktop\\DevBotChanges\\.local\\",
   "expectedPackageFiles": [
     "C:\\Users\\djaekle\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\djaekle\\.nuget\\packages\\azure.core\\1.18.0\\azure.core.1.18.0.nupkg.sha512",
