@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1184,3386</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1184,4170</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>CheckForDuplicateFilenames_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">
@@ -52,7 +52,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="134">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="68">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -122,11 +122,12 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Check through the list of PDFs for duplicate filenames and, if found, move aside to unprocessed for manual processing" DisplayName="CheckForDuplicateFilenames" sap:VirtualizedContainerService.HintSize="971,3321" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Check through the list of PDFs for duplicate filenames and, if found, move aside to unprocessed for manual processing" DisplayName="CheckForDuplicateFilenames" sap:VirtualizedContainerService.HintSize="1111,4105" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="listConvrtToList" />
       <Variable x:TypeArguments="s:String[]" Name="tempStrArr" />
       <Variable x:TypeArguments="x:String" Name="strTempString" />
+      <Variable x:TypeArguments="x:Boolean" Name="boolInvoiceFlag" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -134,8 +135,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="909,92" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Duplicate check has started.&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="909,101" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1049,92" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Duplicate check has started.&quot;]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1049,101" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -149,13 +150,13 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="909,2906" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[inout_arrstrPDFFileArray]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1049,3690" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[inout_arrstrPDFFileArray]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="file1" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="873,2781" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1013,3565" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="matchesDuplicateFile" />
             </Sequence.Variables>
@@ -164,130 +165,191 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="811,2670" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="951,3454" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <TryCatch.Try>
-                <Sequence sap:VirtualizedContainerService.HintSize="773,2420" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <Sequence sap:VirtualizedContainerService.HintSize="913,3204" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:Matches sap2010:Annotation.AnnotationText="Check if filename contains _number.PDF or - Copy.PDF" BuilderPattern="\s-\sCopy.*.?(?=.[A-Za-z]{3})|_\d{1,2}.?(?=\.[A-Za-z]{3})" sap:VirtualizedContainerService.HintSize="711,91" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[file1]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\s-\\sCopy.*.?(?=.[A-Za-z]{3})|_\\d{1,2}.?(?=\\.[A-Za-z]{3})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\s-\sCopy.*.?(?=.[A-Za-z]{3})|_\d{1,2}.?(?=\.[A-Za-z]{3})" RegexOption="IgnoreCase, Compiled" Result="[matchesDuplicateFile]">
+                  <Assign sap:VirtualizedContainerService.HintSize="851,61" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[boolInvoiceFlag]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Check if filename is an invoice based on file naming standards per vendor. If they are an invoice, set boolInvoiceFlag to true and commence duplicate check." DisplayName="Switch" Expression="[in_strCurrentDomain]" sap:VirtualizedContainerService.HintSize="851,225" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence x:Key="aon" sap:VirtualizedContainerService.HintSize="540,81" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="mtchDomainMatches" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Matches BuilderPattern="\\Inv \d{8}.*\.pdf$" sap:VirtualizedContainerService.HintSize="478,60" sap2010:WorkflowViewState.IdRef="Matches_2" Input="[file1]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\\\Inv \\d{8}.*\\.pdf$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\\Inv \d{8}.*\.pdf$" RegexOption="IgnoreCase, Compiled" Result="[mtchDomainMatches]" />
+                      <If Condition="[mtchDomainMatches.Any()]" sap:VirtualizedContainerService.HintSize="478,448" sap2010:WorkflowViewState.IdRef="If_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="400,172" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[boolInvoiceFlag]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence x:Key="guycarp" sap:VirtualizedContainerService.HintSize="540,659" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="mtchDomainMatches" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Matches BuilderPattern="^(?i).*Closing Instruction.*\.pdf$" sap:VirtualizedContainerService.HintSize="478,60" sap2010:WorkflowViewState.IdRef="Matches_3" Input="[file1]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^(?i).*Closing Instruction.*\\.pdf$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^(?i).*Closing Instruction.*\.pdf$" RegexOption="IgnoreCase, Compiled" Result="[mtchDomainMatches]" />
+                      <If Condition="[mtchDomainMatches.Any()]" sap:VirtualizedContainerService.HintSize="478,448" sap2010:WorkflowViewState.IdRef="If_6">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="400,172" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_6">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[boolInvoiceFlag]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence x:Key="gallagherre" sap:VirtualizedContainerService.HintSize="540,659" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="mtchDomainMatches" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Matches BuilderPattern="^(?i).*Closing Instruction.*\.pdf$" sap:VirtualizedContainerService.HintSize="478,60" sap2010:WorkflowViewState.IdRef="Matches_4" Input="[file1]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^(?i).*Closing Instruction.*\\.pdf$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^(?i).*Closing Instruction.*\.pdf$" RegexOption="IgnoreCase, Compiled" Result="[mtchDomainMatches]" />
+                      <If Condition="[mtchDomainMatches.Any()]" sap:VirtualizedContainerService.HintSize="478,448" sap2010:WorkflowViewState.IdRef="If_7">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="400,172" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_7">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[boolInvoiceFlag]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                  </Switch>
+                  <If sap2010:Annotation.AnnotationText="If boolInvoiceFlag is true, commence the duplicate checking process. Otherwise, continue to checking next file in folder." Condition="[boolInvoiceFlag]" sap:VirtualizedContainerService.HintSize="851,2727" sap2010:WorkflowViewState.IdRef="If_8">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:Matches>
-                  <If Condition="[matchesDuplicateFile.Any()]" sap:VirtualizedContainerService.HintSize="711,2178" sap2010:WorkflowViewState.IdRef="If_3">
                     <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="633,1902" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                        <Sequence.Variables>
-                          <Variable x:TypeArguments="s:String[]" Name="strDirectories" />
-                          <Variable x:TypeArguments="x:String" Name="strNewestFolder" />
-                          <Variable x:TypeArguments="x:String" Name="strNewFolderName" />
-                          <Variable x:TypeArguments="x:Int32" Name="intNextFolder" />
-                          <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
-                        </Sequence.Variables>
+                      <Sequence sap:VirtualizedContainerService.HintSize="773,2420" sap2010:WorkflowViewState.IdRef="Sequence_23">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="571,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;File &quot; + file1 + &quot; is a duplicate file.&quot;]" />
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="571,92" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Duplicate found. Moving files to unprocessed&quot;]" />
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke RenameCopyFile for File1" sap:VirtualizedContainerService.HintSize="571,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
-                          <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">[file1]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Path">[Path.GetDirectoryName(file1)+"\LICATE_"+Path.GetFileNameWithoutExtension(file1)+".PDF"]</InArgument>
-                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">True</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_TAG">LICATE_</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_strCurrentDomain]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">["LICATE_"+Path.GetFileNameWithoutExtension(file1)]</InArgument>
-                            <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">[out_drCurrentProcessingLogRecord]</OutArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[in_strBaseFolderPathExternallyAccessed]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[in_strBaseFolderPath]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_SectionID">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate" />
-                          </ui:InvokeWorkflowFile.Arguments>
-                        </ui:InvokeWorkflowFile>
-                        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="571,194" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-                          <ui:MultipleAssign.AssignOperations>
-                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                                <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray]</OutArgument>
-                                </ui:AssignOperation.To>
-                                <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Where(Function(x) x &lt;&gt; file1).ToArray()]</InArgument>
-                                </ui:AssignOperation.Value>
-                              </ui:AssignOperation>
-                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                                <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="s:String[]">[tempStrArr]</OutArgument>
-                                </ui:AssignOperation.To>
-                                <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="s:String[]">[{Path.GetDirectoryName(file1)+"\LICATE_"+Path.GetFileNameWithoutExtension(file1)+".PDF"}]</InArgument>
-                                </ui:AssignOperation.Value>
-                              </ui:AssignOperation>
-                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
-                                <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray]</OutArgument>
-                                </ui:AssignOperation.To>
-                                <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Concat(tempStrArr).ToArray()]</InArgument>
-                                </ui:AssignOperation.Value>
-                              </ui:AssignOperation>
-                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
-                                <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="x:String">[strTempString]</OutArgument>
-                                </ui:AssignOperation.To>
-                                <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="x:String">[file1.Replace(matchesDuplicateFile(0).ToString ,"")]</InArgument>
-                                </ui:AssignOperation.Value>
-                              </ui:AssignOperation>
-                            </scg:List>
-                          </ui:MultipleAssign.AssignOperations>
-                        </ui:MultipleAssign>
-                        <ui:FileExistsX DisplayName="File Exists" Exists="[boolFileExists]" sap:VirtualizedContainerService.HintSize="571,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[strTempString]" />
-                        <If Condition="[boolFileExists]" sap:VirtualizedContainerService.HintSize="571,835" sap2010:WorkflowViewState.IdRef="If_4">
+                        <ui:Matches sap2010:Annotation.AnnotationText="Check if filename contains _number.PDF or - Copy.PDF" BuilderPattern="\s-\sCopy.*.?(?=.[A-Za-z]{3})|_\d{1,2}.?(?=\.[A-Za-z]{3})" sap:VirtualizedContainerService.HintSize="711,91" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[file1]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;\\s-\\sCopy.*.?(?=.[A-Za-z]{3})|_\\d{1,2}.?(?=\\.[A-Za-z]{3})&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="\s-\sCopy.*.?(?=.[A-Za-z]{3})|_\d{1,2}.?(?=\.[A-Za-z]{3})" RegexOption="IgnoreCase, Compiled" Result="[matchesDuplicateFile]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:Matches>
+                        <If Condition="[matchesDuplicateFile.Any()]" sap:VirtualizedContainerService.HintSize="711,2178" sap2010:WorkflowViewState.IdRef="If_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence sap:VirtualizedContainerService.HintSize="493,559" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                            <Sequence sap:VirtualizedContainerService.HintSize="633,1902" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="s:String[]" Name="strDirectories" />
+                                <Variable x:TypeArguments="x:String" Name="strNewestFolder" />
+                                <Variable x:TypeArguments="x:String" Name="strNewFolderName" />
+                                <Variable x:TypeArguments="x:Int32" Name="intNextFolder" />
+                                <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
+                              </Sequence.Variables>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431,92" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[&quot;Marking original file &quot; + strTempString + &quot; as duplicate.&quot;]" />
-                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke RenameCopyFile for File2" sap:VirtualizedContainerService.HintSize="431,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="571,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;File &quot; + file1 + &quot; is a duplicate file.&quot;]" />
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="571,92" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Duplicate found. Moving files to unprocessed&quot;]" />
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke RenameCopyFile for File1" sap:VirtualizedContainerService.HintSize="571,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
                                 <ui:InvokeWorkflowFile.Arguments>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">[strTempString]</InArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_Path">[Path.GetDirectoryName(strTempString)+"\LICATE_"+Path.GetFileNameWithoutExtension(strTempString)+".PDF"]</InArgument>
-                                  <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
-                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">True</InArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_TAG">LICATE_</InArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_strCurrentDomain]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="file1" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_Path">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.GetDirectoryName(file1)+&quot;\LICATE_&quot;+Path.GetFileNameWithoutExtension(file1)+&quot;.PDF&quot;" />
+                                  </InArgument>
+                                  <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">
+                                    <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="inout_dtPDFProcessingLog" />
+                                  </InOutArgument>
+                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">
+                                    <Literal x:TypeArguments="x:Boolean" Value="True" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_TAG">
+                                    <Literal x:TypeArguments="x:String">LICATE_</Literal>
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strCurrentDomain" />
+                                  </InArgument>
                                   <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">
                                     <Literal x:TypeArguments="x:String" Value="" />
                                   </InArgument>
@@ -303,10 +365,18 @@
                                   <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">
                                     <Literal x:TypeArguments="x:String" Value="" />
                                   </InArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">["LICATE_"+Path.GetFileNameWithoutExtension(strTempString)]</InArgument>
-                                  <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">[out_drCurrentProcessingLogRecord]</OutArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[in_strBaseFolderPathExternallyAccessed]</InArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[in_strBaseFolderPath]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;LICATE_&quot;+Path.GetFileNameWithoutExtension(file1)" />
+                                  </InArgument>
+                                  <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">
+                                    <VisualBasicReference x:TypeArguments="s:String[]" ExpressionText="out_drCurrentProcessingLogRecord" />
+                                  </OutArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strBaseFolderPathExternallyAccessed" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">
+                                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strBaseFolderPath" />
+                                  </InArgument>
                                   <InArgument x:TypeArguments="x:String" x:Key="in_SectionID">
                                     <Literal x:TypeArguments="x:String" Value="" />
                                   </InArgument>
@@ -316,26 +386,26 @@
                                   <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate" />
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
-                              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="571,194" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
                                 <ui:MultipleAssign.AssignOperations>
                                   <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
                                       <ui:AssignOperation.To>
                                         <OutArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray]</OutArgument>
                                       </ui:AssignOperation.To>
                                       <ui:AssignOperation.Value>
-                                        <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Where(Function(x) x &lt;&gt; strTempString).ToArray()]</InArgument>
+                                        <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Where(Function(x) x &lt;&gt; file1).ToArray()]</InArgument>
                                       </ui:AssignOperation.Value>
                                     </ui:AssignOperation>
-                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
                                       <ui:AssignOperation.To>
                                         <OutArgument x:TypeArguments="s:String[]">[tempStrArr]</OutArgument>
                                       </ui:AssignOperation.To>
                                       <ui:AssignOperation.Value>
-                                        <InArgument x:TypeArguments="s:String[]">[{Path.GetDirectoryName(strTempString)+"\LICATE_"+Path.GetFileNameWithoutExtension(strTempString)+".PDF"}]</InArgument>
+                                        <InArgument x:TypeArguments="s:String[]">[{Path.GetDirectoryName(file1)+"\LICATE_"+Path.GetFileNameWithoutExtension(file1)+".PDF"}]</InArgument>
                                       </ui:AssignOperation.Value>
                                     </ui:AssignOperation>
-                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
                                       <ui:AssignOperation.To>
                                         <OutArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray]</OutArgument>
                                       </ui:AssignOperation.To>
@@ -343,20 +413,107 @@
                                         <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Concat(tempStrArr).ToArray()]</InArgument>
                                       </ui:AssignOperation.Value>
                                     </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[strTempString]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[file1.Replace(matchesDuplicateFile(0).ToString ,"")]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
                                   </scg:List>
                                 </ui:MultipleAssign.AssignOperations>
                               </ui:MultipleAssign>
+                              <ui:FileExistsX DisplayName="File Exists" Exists="[boolFileExists]" sap:VirtualizedContainerService.HintSize="571,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[strTempString]" />
+                              <If Condition="[boolFileExists]" sap:VirtualizedContainerService.HintSize="571,835" sap2010:WorkflowViewState.IdRef="If_4">
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="493,559" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431,92" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[&quot;Marking original file &quot; + strTempString + &quot; as duplicate.&quot;]" />
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke RenameCopyFile for File2" sap:VirtualizedContainerService.HintSize="431,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="SupportActivities\RenameCopyFile.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_currentFile">[strTempString]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_Path">[Path.GetDirectoryName(strTempString)+"\LICATE_"+Path.GetFileNameWithoutExtension(strTempString)+".PDF"]</InArgument>
+                                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtProcessingLog">[inout_dtPDFProcessingLog]</InOutArgument>
+                                        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isMove">True</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_TAG">LICATE_</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[in_strCurrentDomain]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_invoiceNumber">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_copyFrom">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_copyTo">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_NewFileName">["LICATE_"+Path.GetFileNameWithoutExtension(strTempString)]</InArgument>
+                                        <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">[out_drCurrentProcessingLogRecord]</OutArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[in_strBaseFolderPathExternallyAccessed]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[in_strBaseFolderPath]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_SectionID">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_SectionTriadID">
+                                          <Literal x:TypeArguments="x:String" Value="" />
+                                        </InArgument>
+                                        <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate" />
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                                      <ui:MultipleAssign.AssignOperations>
+                                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                                            <ui:AssignOperation.To>
+                                              <OutArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray]</OutArgument>
+                                            </ui:AssignOperation.To>
+                                            <ui:AssignOperation.Value>
+                                              <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Where(Function(x) x &lt;&gt; strTempString).ToArray()]</InArgument>
+                                            </ui:AssignOperation.Value>
+                                          </ui:AssignOperation>
+                                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                                            <ui:AssignOperation.To>
+                                              <OutArgument x:TypeArguments="s:String[]">[tempStrArr]</OutArgument>
+                                            </ui:AssignOperation.To>
+                                            <ui:AssignOperation.Value>
+                                              <InArgument x:TypeArguments="s:String[]">[{Path.GetDirectoryName(strTempString)+"\LICATE_"+Path.GetFileNameWithoutExtension(strTempString)+".PDF"}]</InArgument>
+                                            </ui:AssignOperation.Value>
+                                          </ui:AssignOperation>
+                                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                                            <ui:AssignOperation.To>
+                                              <OutArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray]</OutArgument>
+                                            </ui:AssignOperation.To>
+                                            <ui:AssignOperation.Value>
+                                              <InArgument x:TypeArguments="s:String[]">[inout_arrstrPDFFileArray.Concat(tempStrArr).ToArray()]</InArgument>
+                                            </ui:AssignOperation.Value>
+                                          </ui:AssignOperation>
+                                        </scg:List>
+                                      </ui:MultipleAssign.AssignOperations>
+                                    </ui:MultipleAssign>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="571,92" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Warn" Message="[&quot;Files renamed, continuing processing.&quot;]" />
                             </Sequence>
                           </If.Then>
                         </If>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="571,92" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Warn" Message="[&quot;Files renamed, continuing processing.&quot;]" />
                       </Sequence>
                     </If.Then>
                   </If>
                 </Sequence>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="si:FileNotFoundException" sap:VirtualizedContainerService.HintSize="777,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <Catch x:TypeArguments="si:FileNotFoundException" sap:VirtualizedContainerService.HintSize="917,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -370,7 +527,7 @@
                     <ui:Continue sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Continue_1" />
                   </ActivityAction>
                 </Catch>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="777,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="917,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
