@@ -24,7 +24,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1438,22489</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1438,22529</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractDataFromAttachments_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -555,7 +555,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="excelException" />
             </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="400,333" sap2010:WorkflowViewState.IdRef="Sequence_61">
+            <Sequence sap:VirtualizedContainerService.HintSize="400,366" sap2010:WorkflowViewState.IdRef="Sequence_61">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1272,42 +1272,20 @@
                                                             </sap:WorkflowViewStateService.ViewState>
                                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="338,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="SupportActivities\RelocateFiles.xaml">
                                                               <ui:InvokeWorkflowFile.Arguments>
-                                                                <InArgument x:TypeArguments="x:Boolean" x:Key="in_isFromCanada">
-                                                                  <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="isFromCanada" />
-                                                                </InArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_pdfFilePath">
-                                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="pdfFilePath" />
-                                                                </InArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderPath">
-                                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strMainFolderPath+currentDomain.Trim.ToLower+&quot;\&quot;" />
-                                                                </InArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">
-                                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="currentDomain.Trim.ToLower" />
-                                                                </InArgument>
-                                                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtPDFProcessingLog">
-                                                                  <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dtPDFProcessingLog" />
-                                                                </InOutArgument>
-                                                                <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">
-                                                                  <VisualBasicReference x:TypeArguments="s:String[]" ExpressionText="drCurrentProcesssingLogRecord" />
-                                                                </OutArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">
-                                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strBaseFolderPathExternallyAccessed" />
-                                                                </InArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">
-                                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strBaseFolderPath" />
-                                                                </InArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_TAG">
-                                                                  <Literal x:TypeArguments="x:String">DUPLICATE</Literal>
-                                                                </InArgument>
-                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentMainEmailFileName">
-                                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCurrentMainEmailFileName" />
-                                                                </InArgument>
+                                                                <InArgument x:TypeArguments="x:Boolean" x:Key="in_isFromCanada">[isFromCanada]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_pdfFilePath">[pdfFilePath]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strMainFolderPath">[in_strMainFolderPath+currentDomain.Trim.ToLower+"\"]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_currentDomain">[currentDomain.Trim.ToLower]</InArgument>
+                                                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_dtPDFProcessingLog">[dtPDFProcessingLog]</InOutArgument>
+                                                                <OutArgument x:TypeArguments="s:String[]" x:Key="out_drCurrentProcessingLogRecord">[drCurrentProcesssingLogRecord]</OutArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPathExternallyAccessed">[in_strBaseFolderPathExternallyAccessed]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strBaseFolderPath">[in_strBaseFolderPath]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_TAG">DUPLICATE</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentMainEmailFileName">[strCurrentMainEmailFileName]</InArgument>
                                                                 <InArgument x:TypeArguments="x:String" x:Key="in_referenceNumber">
                                                                   <Literal x:TypeArguments="x:String" Value="" />
                                                                 </InArgument>
-                                                                <InArgument x:TypeArguments="x:Boolean" x:Key="in_isUnprocessed">
-                                                                  <Literal x:TypeArguments="x:Boolean" Value="True" />
-                                                                </InArgument>
+                                                                <InArgument x:TypeArguments="x:Boolean" x:Key="in_isUnprocessed">True</InArgument>
                                                                 <InArgument x:TypeArguments="x:String" x:Key="in_treatyNumber">
                                                                   <Literal x:TypeArguments="x:String" Value="" />
                                                                 </InArgument>
@@ -1320,9 +1298,7 @@
                                                                 <InArgument x:TypeArguments="x:String" x:Key="in_triadSectionID">
                                                                   <Literal x:TypeArguments="x:String" Value="" />
                                                                 </InArgument>
-                                                                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate">
-                                                                  <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="boolProcessedDuplicate" />
-                                                                </OutArgument>
+                                                                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolProcessedDuplicate">[boolProcessedDuplicate]</OutArgument>
                                                               </ui:InvokeWorkflowFile.Arguments>
                                                             </ui:InvokeWorkflowFile>
                                                             <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_26">
