@@ -31,7 +31,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1184,5902</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1184,6184</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>MoveCopyFile_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -135,19 +135,20 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MoveCopyFile" sap:VirtualizedContainerService.HintSize="820,5837" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MoveCopyFile" sap:VirtualizedContainerService.HintSize="820,6119" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Default="[New String() {}]" Name="tempArrStr" />
       <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
+      <Variable x:TypeArguments="x:Int32" Name="qtyToTruncate" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_isMove]" sap:VirtualizedContainerService.HintSize="758,5726" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_isMove]" sap:VirtualizedContainerService.HintSize="758,6008" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Sequence - Is Move" sap:VirtualizedContainerService.HintSize="633,1922" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Sequence - Is Move" sap:VirtualizedContainerService.HintSize="633,1471" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="tempInvoiceNumber">
               <Variable.Default>
@@ -205,7 +206,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_Path]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[in_currentFile]" />
           </Sequence>
-          <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_TAG]" sap:VirtualizedContainerService.HintSize="571,736" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+          <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_TAG]" sap:VirtualizedContainerService.HintSize="571,285" sap2010:WorkflowViewState.IdRef="Switch`1_2">
             <Sequence x:Key="BYPASS" DisplayName="Sequence - BYPASS" sap:VirtualizedContainerService.HintSize="493,367" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -826,7 +827,7 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="680,3628" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap:VirtualizedContainerService.HintSize="680,4361" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="copyDestinationExists" />
             <Variable x:TypeArguments="upr:ILocalResource" Name="referencePath" />
@@ -864,7 +865,47 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:FileExistsX DisplayName="File Exists" Exists="[boolProcessedFileExists]" sap:VirtualizedContainerService.HintSize="618,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_copyTo + &quot;\&quot; + in_NewFileName + &quot;.PDF&quot;]" />
+          <If Condition="[(in_copyTo + in_NewFileName + &quot;.pdf&quot;).Length &gt; 255]" sap:VirtualizedContainerService.HintSize="618,866" sap2010:WorkflowViewState.IdRef="If_7">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="496,446" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="strTempFilenameCheck" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[qtyToTruncate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[(in_copyTo + in_NewFileName + ".pdf").Length - 255]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[strTempFilenameCheck]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_NewFileName.Substring(0, in_NewFileName.Length - qtyToTruncate)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:FileExistsX DisplayName="File Exists" Exists="[boolProcessedFileExists]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_copyTo + &quot;\&quot; + strTempFilenameCheck + &quot;.PDF&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="496,244" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:FileExistsX DisplayName="File Exists" Exists="[boolProcessedFileExists]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="FileExistsX_2" Path="[in_copyTo + &quot;\&quot; + in_NewFileName + &quot;.PDF&quot;]" />
+              </Sequence>
+            </If.Else>
+          </If>
           <If Condition="[boolProcessedFileExists And Not in_copyFrom.Contains(&quot;.MSG&quot;) And Not in_copyFrom.Contains(&quot;.msg&quot;)]" sap:VirtualizedContainerService.HintSize="618,1334" sap2010:WorkflowViewState.IdRef="If_6">
             <If.Then>
               <Sequence sap:VirtualizedContainerService.HintSize="496,888" sap2010:WorkflowViewState.IdRef="Sequence_26">
@@ -964,9 +1005,6 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
                     <Sequence sap:VirtualizedContainerService.HintSize="400,405" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="x:Int32" Name="qtyToTruncate" />
-                      </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
