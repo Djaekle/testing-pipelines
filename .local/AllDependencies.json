@@ -21933,9 +21933,9 @@
     "restore": {
       "projectUniqueName": "BRAMBrokerAccountsTest",
       "projectName": "BRAMBrokerAccountsTest",
-      "projectPath": "C:\\Users\\djaekle\\OneDrive - WRB\\Desktop\\DevBotChanges\\.local",
+      "projectPath": "C:\\Users\\djaekle\\OneDrive - WRB\\Desktop\\TestDuplicateChanges\\.local",
       "packagesPath": "C:\\Users\\djaekle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\djaekle\\OneDrive - WRB\\Desktop\\DevBotChanges\\.local"
+      "outputPath": "C:\\Users\\djaekle\\OneDrive - WRB\\Desktop\\TestDuplicateChanges\\.local"
     },
     "frameworks": {
       "net6.0-windows7.0": {

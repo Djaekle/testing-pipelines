@@ -26,7 +26,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1248,17314</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1248,17274</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Broker_WF_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="68">
@@ -483,21 +483,21 @@
       </ui:ForEachRow>
       <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="916,52" sap2010:WorkflowViewState.IdRef="CommentOut_9">
         <ui:CommentOut.Body>
-          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="540,663" sap2010:WorkflowViewState.IdRef="Sequence_135">
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="540,686" sap2010:WorkflowViewState.IdRef="Sequence_135">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[dtReferenceNumberFromPDF.RowCount &gt;0]" sap:VirtualizedContainerService.HintSize="955,575" sap2010:WorkflowViewState.IdRef="If_47">
+            <If Condition="[dtReferenceNumberFromPDF.RowCount &gt;0]" sap:VirtualizedContainerService.HintSize="955,565" sap2010:WorkflowViewState.IdRef="If_47">
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="400,296" sap2010:WorkflowViewState.IdRef="Sequence_114">
+                <Sequence sap:VirtualizedContainerService.HintSize="400,286" sap2010:WorkflowViewState.IdRef="Sequence_114">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:Matches sap2010:Annotation.AnnotationText="Match PDF title to classify document" BuilderPattern="^Inv \d{8}" DisplayName="Find Matching Patterns () Invoice Type from file name" sap:VirtualizedContainerService.HintSize="200,93" sap2010:WorkflowViewState.IdRef="Matches_5" Input="[strTempPDFTextHolder]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^Inv \\d{8}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[dtReferenceNumberFromPDF.Rows(0).Item(&quot;RegEx&quot;).ToString.TrimEnd()]" RegexOption="IgnoreCase, Compiled" Result="[matchReferenceNumber]">
+                  <ui:Matches sap2010:Annotation.AnnotationText="Match PDF title to classify document" BuilderPattern="^Inv \d{8}" DisplayName="Find Matching Patterns () Invoice Type from file name" sap:VirtualizedContainerService.HintSize="338,83" sap2010:WorkflowViewState.IdRef="Matches_5" Input="[strTempPDFTextHolder]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^Inv \\d{8}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[dtReferenceNumberFromPDF.Rows(0).Item(&quot;RegEx&quot;).ToString.TrimEnd()]" RegexOption="IgnoreCase, Compiled" Result="[matchReferenceNumber]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -931,7 +931,7 @@
                                 </If>
                                 <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="618,52" sap2010:WorkflowViewState.IdRef="CommentOut_10">
                                   <ui:CommentOut.Body>
-                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="979,1103" sap2010:WorkflowViewState.IdRef="Sequence_142">
+                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="656,1442" sap2010:WorkflowViewState.IdRef="Sequence_142">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -945,14 +945,14 @@
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
                                         <If.Then>
-                                          <Sequence sap:VirtualizedContainerService.HintSize="400,302" sap2010:WorkflowViewState.IdRef="Sequence_80">
+                                          <Sequence sap:VirtualizedContainerService.HintSize="400,304" sap2010:WorkflowViewState.IdRef="Sequence_80">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Warn" Message="[&quot;Ready for content analysis&quot;]" />
-                                            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,92" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Warn" Message="[&quot;Ready for content analysis&quot;]" />
+                                            <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_30">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="x:Boolean">[skipProcessing]</OutArgument>
                                               </Assign.To>
@@ -963,22 +963,22 @@
                                           </Sequence>
                                         </If.Then>
                                         <If.Else>
-                                          <Sequence sap:VirtualizedContainerService.HintSize="516,853" sap2010:WorkflowViewState.IdRef="Sequence_83">
+                                          <Sequence sap:VirtualizedContainerService.HintSize="540,894" sap2010:WorkflowViewState.IdRef="Sequence_83">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <If Condition="[Not String.IsNullOrEmpty(out_TreatyNum)]" sap:VirtualizedContainerService.HintSize="454,742" sap2010:WorkflowViewState.IdRef="If_32">
+                                            <If Condition="[Not String.IsNullOrEmpty(out_TreatyNum)]" sap:VirtualizedContainerService.HintSize="478,784" sap2010:WorkflowViewState.IdRef="If_32">
                                               <If.Then>
-                                                <Sequence sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                                                <Sequence sap:VirtualizedContainerService.HintSize="400,304" sap2010:WorkflowViewState.IdRef="Sequence_81">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Warn" Message="[&quot;Document classified as REF_EXCL -&gt;&quot;+CurrentRow.Item(&quot;BotFlag&quot;).ToString]" />
-                                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,92" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Warn" Message="[&quot;Document classified as REF_EXCL -&gt;&quot;+CurrentRow.Item(&quot;BotFlag&quot;).ToString]" />
+                                                  <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_31">
                                                     <Assign.To>
                                                       <OutArgument x:TypeArguments="x:String">[NewTag]</OutArgument>
                                                     </Assign.To>
@@ -989,14 +989,14 @@
                                                 </Sequence>
                                               </If.Then>
                                               <If.Else>
-                                                <Sequence sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                                                <Sequence sap:VirtualizedContainerService.HintSize="400,304" sap2010:WorkflowViewState.IdRef="Sequence_82">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Warn" Message="[&quot;Document classified as REF_UNKN -&gt;&quot;+CurrentRow.Item(&quot;BotFlag&quot;).ToString]" />
-                                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_32">
+                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,92" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Warn" Message="[&quot;Document classified as REF_UNKN -&gt;&quot;+CurrentRow.Item(&quot;BotFlag&quot;).ToString]" />
+                                                  <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_32">
                                                     <Assign.To>
                                                       <OutArgument x:TypeArguments="x:String">[NewTag]</OutArgument>
                                                     </Assign.To>
@@ -1796,7 +1796,7 @@ Written premiums (Net of inuring)")]</OutArgument>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <If.Then>
-                                  <Sequence sap:VirtualizedContainerService.HintSize="680,999" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                                  <Sequence sap:VirtualizedContainerService.HintSize="680,1114" sap2010:WorkflowViewState.IdRef="Sequence_53">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
